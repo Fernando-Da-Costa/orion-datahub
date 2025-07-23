@@ -1,0 +1,21 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "lakeformation:PutDataLakeSettings",
+        "lakeformation:GetDataLakeSettings",
+        "lakeformation:GrantPermissions",
+        "lakeformation:RevokePermissions",
+        "lakeformation:ListPermissions",
+        "lakeformation:CreateLFTag",
+        "lakeformation:GetLFTag",
+        "lakeformation:UpdateLFTag",
+        "lakeformation:DeleteLFTag",
+        "lakeformation:ListLFTags"
+      ],
+      "Resource": "arn:aws:lakeformation:sa-east-1:475057824718:catalog:475057824718"
+    }
+  ]
+}

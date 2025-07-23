@@ -1,0 +1,21 @@
+{
+  "Name": "oracle-to-bronze",
+  "Role": "glue-orion-role",
+  "Command": {
+    "Name": "glueetl",
+    "ScriptLocation": "s3://orion-code/scripts/glue/ingest_oracle_to_bronze/job.py",
+    "PythonVersion": "3"
+  },
+  "DefaultArguments": {
+    "--TempDir": "s3://orion-temp/",
+    "--job-language": "python",
+    "--env": "dev",
+    "--schema": "HR",
+    "--table": "EMPLOYEES",
+    "--output_path": "s3://orion-datahub-bronze-dev/oracle/hr/employees/"
+  },
+  "MaxRetries": 1,
+  "GlueVersion": "4.0",
+  "NumberOfWorkers": 10,
+  "WorkerType": "G.1X"
+}

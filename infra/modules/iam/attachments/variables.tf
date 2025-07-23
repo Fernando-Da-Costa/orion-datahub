@@ -24,3 +24,7 @@ variable "athena_access_policy_arn" {
   type        = string
 }
 
+variable "lakeformation_access_policy_arn" {
+  description = "ARN da policy de acesso ao LakeFormation"
+  type        = string
+}

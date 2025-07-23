@@ -25,11 +25,7 @@ module "athena" {
 
 module "lakeformation" {
   source        = "../infra/modules/lakeformation"
-  admin_arn     = module.iam.arn
-  analyst_arn   = module.iam.arn
-  
-  #environment   = var.environment
-  #admin_arn  = "arn:aws:iam::475057824718:user/devs-orion-datahub"
-  #analyst_arn = "arn:aws:iam::475057824718:user/devs-analyst-orion"
+  admin_arn     = "arn:aws:iam::475057824718:user/devs-orion-datahub"
+  analyst_arn   = "arn:aws:iam::475057824718:user/devs-orion-analyst"
 }
 
