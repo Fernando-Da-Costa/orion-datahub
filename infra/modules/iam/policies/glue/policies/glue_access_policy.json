@@ -1,0 +1,99 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AthenaAccess",
+      "Effect": "Allow",
+      "Action": [
+        "athena:CreateWorkGroup",
+        "athena:GetWorkGroup",
+        "athena:UpdateWorkGroup",
+        "athena:DeleteWorkGroup",
+        "athena:StartQueryExecution",
+        "athena:GetQueryResults",
+        "athena:GetQueryExecution",
+        "athena:TagResource",
+        "athena:ListWorkGroups",
+        "athena:ListTagsForResource"
+      ],
+      "Resource": [
+        "arn:aws:athena:sa-east-1:475057824718:workgroup/orion-dev-wg"
+      ]
+    },
+    {
+      "Sid": "CatalogCreateDatabase",
+      "Effect": "Allow",
+      "Action": "glue:CreateDatabase",
+      "Resource": "*"
+    },
+    {
+      "Sid": "CatalogGetDatabase",
+      "Effect": "Allow",
+      "Action": [
+        "glue:GetDatabase",
+        "glue:GetDatabases",
+        "glue:DeleteDatabase",
+        "glue:DeleteTable",
+        "glue:DeleteUserDefinedFunction"
+      ],
+      "Resource": [
+        "arn:aws:glue:sa-east-1:475057824718:catalog",
+        "arn:aws:glue:sa-east-1:475057824718:database/*",
+        "arn:aws:glue:sa-east-1:475057824718:table/*/*",
+        "arn:aws:glue:sa-east-1:475057824718:userDefinedFunction/*/*"
+      ]
+    },
+    {
+      "Sid": "TableAccess",
+      "Effect": "Allow",
+      "Action": [
+        "glue:GetTable",
+        "glue:GetTables"
+      ],
+      "Resource": "arn:aws:glue:sa-east-1:475057824718:table/orion/*"
+    },
+    {
+      "Sid": "CrawlerAccess",
+      "Effect": "Allow",
+      "Action": [
+        "glue:GetCrawler",
+        "glue:GetCrawlers",
+        "glue:CreateCrawler",
+        "glue:TagResource",
+        "glue:DeleteCrawler"
+      ],
+      "Resource": [
+        "arn:aws:glue:sa-east-1:475057824718:crawler/orion-bronze",
+        "arn:aws:glue:sa-east-1:475057824718:crawler/orion-gold",
+        "arn:aws:glue:sa-east-1:475057824718:crawler/orion-silver"
+      ]
+    },
+    {
+      "Sid": "JobAccess",
+      "Effect": "Allow",
+      "Action": [
+        "glue:GetJob",
+        "glue:GetJobs"
+      ],
+      "Resource": "arn:aws:glue:sa-east-1:475057824718:job/*"
+    },
+    {
+      "Sid": "GeneralGlueActions",
+      "Effect": "Allow",
+      "Action": [
+        "glue:GetDataCatalogEncryptionSettings",
+        "glue:GetTags"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "GlueConnectionAccess",
+      "Effect": "Allow",
+      "Action": [
+        "glue:GetConnection",
+        "glue:GetConnections"
+      ],
+      "Resource": "*"
+    }
+  ]
+}

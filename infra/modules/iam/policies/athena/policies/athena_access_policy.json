@@ -1,0 +1,103 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AthenaWorkGroupActionsSpecific",
+      "Effect": "Allow",
+      "Action": [
+        "athena:StartQueryExecution",
+        "athena:GetQueryResults",
+        "athena:GetQueryExecution"
+      ],
+      "Resource": "arn:aws:athena:sa-east-1:475057824718:workgroup/orion-dev-wg"
+    },
+    {
+      "Sid": "AllowCreateWorkGroupGlobally",
+      "Effect": "Allow",
+      "Action": "athena:CreateWorkGroup",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestedRegion": "sa-east-1"
+        }
+      }
+    },
+    {
+      "Sid": "AllowDeleteWorkGroupGlobally",
+      "Effect": "Allow",
+      "Action": "athena:DeleteWorkGroup",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestedRegion": "sa-east-1"
+        }
+      }
+    },
+    {
+      "Sid": "AllowGetWorkGroupGlobally",
+      "Effect": "Allow",
+      "Action": "athena:GetWorkGroup",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestedRegion": "sa-east-1"
+        }
+      }
+    },
+    {
+      "Sid": "AllowUpdateWorkGroupGlobally",
+      "Effect": "Allow",
+      "Action": "athena:UpdateWorkGroup",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestedRegion": "sa-east-1"
+        }
+      }
+    },
+    {
+      "Sid": "AllowTagResourceGlobally",
+      "Effect": "Allow",
+      "Action": "athena:TagResource",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestedRegion": "sa-east-1"
+        }
+      }
+    },
+    {
+      "Sid": "AllowListTagsForResourceGlobally",
+      "Effect": "Allow",
+      "Action": "athena:ListTagsForResource",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestedRegion": "sa-east-1"
+        }
+      }
+    },
+    {
+      "Sid": "AllowListWorkGroupsGlobally",
+      "Effect": "Allow",
+      "Action": "athena:ListWorkGroups",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestedRegion": "sa-east-1"
+        }
+      }
+    },
+    {
+      "Sid": "AllowListQueryExecutionsGlobally",
+      "Effect": "Allow",
+      "Action": "athena:ListQueryExecutions",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestedRegion": "sa-east-1"
+        }
+      }
+    }
+  ]
+}
