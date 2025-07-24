@@ -5,7 +5,7 @@ from awsglue.context import GlueContext
 from pyspark.context import SparkContext
 from datetime import datetime
 
-args = getResolvedOptions(sys.argv, ["JOB_NAME", "env", "table", "schema", "output_path"])
+args = getResolvedOptions(sys.argv, ["JOB_NAME", "env", "table", "schema", "s3_output_path"])
 
 sc = SparkContext()
 glueContext = GlueContext(sc)
@@ -14,12 +14,12 @@ spark = glueContext.spark_session
 now = datetime.now()
 year, month, day = now.year, now.month, now.day
 
-jdbc_url = f"jdbc:oracle:thin:@//<host>:<port>/<service>"
+jdbc_url = f"jdbc:oracle:thin:@//localhost:1521/XEPDB1"
 connection_options = {
     "url": jdbc_url,
     "dbtable": f"{args['schema']}.{args['table']}",
-    "user": "<user>",
-    "password": "<password>",
+    "user": "orion",
+    "password": "SenhaForte123",
     "driver": "oracle.jdbc.driver.OracleDriver"
 }
 

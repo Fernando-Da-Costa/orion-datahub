@@ -29,3 +29,12 @@ variable "temp_dir" {
   description = "Diretório temporário no S3"
   type        = string
 }
+variable "table" {
+  description = "Nome da tabela no Oracle"
+  type        = string
+}
+
+variable "schema" {
+  description = "Nome do schema no Oracle"
+  type        = string
+}

@@ -28,13 +28,18 @@ variable "temp_dir" {
   type        = string
 }
 
-# variable "bucket_bronze" {
-#   description = "Nome do bucket Bronze"
-#   type        = string
-# }
 
 variable "job_name" {
   description = "Nome do job Glue"
   type        = string
   default     = "oracle-to-parquet-partitioned"
+}
+variable "table" {
+  description = "Nome da tabela no Oracle"
+  type        = string
+}
+
+variable "schema" {
+  description = "Nome do schema no Oracle"
+  type        = string
 }

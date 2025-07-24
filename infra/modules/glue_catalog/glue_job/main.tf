@@ -9,13 +9,14 @@ resource "aws_glue_job" "oracle_to_parquet_partitioned" {
   }
   default_arguments = {
     "--job-language"   = "python"
+    "--env"            = var.environment
+    "--table"          = "empregados"
+    "--schema"         = "orion"
     "--s3_input_path"  = var.s3_input_path
     "--s3_output_path" = var.s3_output_path
     "--TempDir"        = var.temp_dir
     "--enable-metrics" = "true"
     "--additional-python-modules" = "datadog"
-    #"--extra-py-files" = "s3://your-bucket/libs/my_module.zip"
-
   }
   glue_version = "4.0"
   number_of_workers = 2

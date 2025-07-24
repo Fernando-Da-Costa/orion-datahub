@@ -23,7 +23,8 @@ module "glue_catalog" {
   temp_dir         = "s3://orion-datahub-bronze/temp/"
   glue_role_arn    = module.iam.arn
   bucket_script    = module.s3_lakehouse.bucket_script
-  # bucket_bronze = module.s3_lakehouse.bucket_bronze
+  table            = "empregados"
+  schema           = "orion"    
 }
 
 

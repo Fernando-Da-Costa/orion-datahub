@@ -23,5 +23,6 @@ module "glue" {
   s3_input_path    = "s3://orion-datahub-bronze/fonte_a/"
   s3_output_path   = "s3://orion-datahub-silver/"
   temp_dir         = "s3://orion-datahub-bronze/temp/"
-  # bucket_bronze    = module.s3_lakehouse.bucket_bronze
+  table            = "empregados"
+  schema           = "orion"  
 }

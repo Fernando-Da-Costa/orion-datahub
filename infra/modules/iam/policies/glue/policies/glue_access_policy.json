@@ -21,6 +21,20 @@
             ]
         },
         {
+            "Sid": "AllowGlueUpdateJob",
+            "Effect": "Allow",
+            "Action": "glue:UpdateJob",
+            "Resource": "arn:aws:glue:sa-east-1:475057824718:job/oracle-to-parquet-partitioned"
+        },
+        {
+            "Sid": "AllowS3ScriptAccess",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": "arn:aws:s3:::orion-datahub-script/scripts/oracle_to_parquet_partitioned.py"
+        },
+        {
             "Sid": "AllowGlueCreateScript",
             "Effect": "Allow",
             "Action": "glue:CreateScript",
