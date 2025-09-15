@@ -11,6 +11,8 @@ __pycache__/
 *.pyo
 venv/
 .venv/
+infra/envs
+
 
 # Specific files
 comandos.txt

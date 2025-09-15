@@ -2,32 +2,37 @@ variable "environment" {
   description = "Ambiente (dev, staging, prod)"
   type        = string
 }
-variable "iam_role_arn" {
-  type = string
-}
+
 variable "glue_role_arn" {
-  type = string
+  description = "ARN da role usada pelo Glue"
+  type        = string
 }
+
 variable "script_path" {
-  type = string
+  description = "Caminho do script Python no S3"
+  type        = string
 }
 
 variable "s3_input_path" {
-  type = string
+  description = "Caminho de entrada no S3"
+  type        = string
 }
 
 variable "s3_output_path" {
-  type = string
-}
-
-variable "bucket_script" {
-  description = "S3 bucket for scripts"
+  description = "Caminho de saída no S3"
   type        = string
 }
 
 variable "temp_dir" {
   description = "Diretório temporário no S3"
   type        = string
+}
+
+
+variable "job_name" {
+  description = "Nome do job Glue"
+  type        = string
+  default     = "oracle-to-parquet-partitioned"
 }
 variable "table" {
   description = "Nome da tabela no Oracle"

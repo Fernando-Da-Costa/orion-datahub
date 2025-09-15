@@ -1,99 +1,153 @@
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "AthenaAccess",
-      "Effect": "Allow",
-      "Action": [
-        "athena:CreateWorkGroup",
-        "athena:GetWorkGroup",
-        "athena:UpdateWorkGroup",
-        "athena:DeleteWorkGroup",
-        "athena:StartQueryExecution",
-        "athena:GetQueryResults",
-        "athena:GetQueryExecution",
-        "athena:TagResource",
-        "athena:ListWorkGroups",
-        "athena:ListTagsForResource"
-      ],
-      "Resource": [
-        "arn:aws:athena:sa-east-1:475057824718:workgroup/orion-dev-wg"
-      ]
-    },
-    {
-      "Sid": "CatalogCreateDatabase",
-      "Effect": "Allow",
-      "Action": "glue:CreateDatabase",
-      "Resource": "*"
-    },
-    {
-      "Sid": "CatalogGetDatabase",
-      "Effect": "Allow",
-      "Action": [
-        "glue:GetDatabase",
-        "glue:GetDatabases",
-        "glue:DeleteDatabase",
-        "glue:DeleteTable",
-        "glue:DeleteUserDefinedFunction"
-      ],
-      "Resource": [
-        "arn:aws:glue:sa-east-1:475057824718:catalog",
-        "arn:aws:glue:sa-east-1:475057824718:database/*",
-        "arn:aws:glue:sa-east-1:475057824718:table/*/*",
-        "arn:aws:glue:sa-east-1:475057824718:userDefinedFunction/*/*"
-      ]
-    },
-    {
-      "Sid": "TableAccess",
-      "Effect": "Allow",
-      "Action": [
-        "glue:GetTable",
-        "glue:GetTables"
-      ],
-      "Resource": "arn:aws:glue:sa-east-1:475057824718:table/orion/*"
-    },
-    {
-      "Sid": "CrawlerAccess",
-      "Effect": "Allow",
-      "Action": [
-        "glue:GetCrawler",
-        "glue:GetCrawlers",
-        "glue:CreateCrawler",
-        "glue:TagResource",
-        "glue:DeleteCrawler"
-      ],
-      "Resource": [
-        "arn:aws:glue:sa-east-1:475057824718:crawler/orion-bronze",
-        "arn:aws:glue:sa-east-1:475057824718:crawler/orion-gold",
-        "arn:aws:glue:sa-east-1:475057824718:crawler/orion-silver"
-      ]
-    },
-    {
-      "Sid": "JobAccess",
-      "Effect": "Allow",
-      "Action": [
-        "glue:GetJob",
-        "glue:GetJobs"
-      ],
-      "Resource": "arn:aws:glue:sa-east-1:475057824718:job/*"
-    },
-    {
-      "Sid": "GeneralGlueActions",
-      "Effect": "Allow",
-      "Action": [
-        "glue:GetDataCatalogEncryptionSettings",
-        "glue:GetTags"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Sid": "GlueConnectionAccess",
-      "Effect": "Allow",
-      "Action": [
-        "glue:GetConnection",
-        "glue:GetConnections"
-      ],
-      "Resource": "*"
-    }
-  ]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AthenaAccess",
+            "Effect": "Allow",
+            "Action": [
+                "athena:CreateWorkGroup",
+                "athena:GetWorkGroup",
+                "athena:UpdateWorkGroup",
+                "athena:DeleteWorkGroup",
+                "athena:StartQueryExecution",
+                "athena:GetQueryResults",
+                "athena:GetQueryExecution",
+                "athena:TagResource",
+                "athena:ListWorkGroups",
+                "athena:ListTagsForResource"
+            ],
+            "Resource": [
+                "arn:aws:athena:sa-east-1:475057824718:workgroup/orion-dev-wg"
+            ]
+        },
+        {
+            "Sid": "AllowGlueUpdateJob",
+            "Effect": "Allow",
+            "Action": "glue:UpdateJob",
+            "Resource": "arn:aws:glue:sa-east-1:475057824718:job/oracle-to-parquet-partitioned"
+        },
+        {
+            "Sid": "AllowS3ScriptAccess",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": "arn:aws:s3:::orion-datahub-script/scripts/oracle_to_parquet_partitioned.py"
+        },
+        {
+            "Sid": "AllowGlueCreateScript",
+            "Effect": "Allow",
+            "Action": "glue:CreateScript",
+            "Resource": "arn:aws:glue:sa-east-1:475057824718:job/oracle-to-parquet-partitioned"
+        },
+        {
+            "Sid": "AllowGlueCreateJob",
+            "Effect": "Allow",
+            "Action": "glue:CreateJob",
+            "Resource": "arn:aws:glue:sa-east-1:475057824718:job/oracle-to-parquet-partitioned"
+        },
+        {
+            "Sid": "AllowGlueJobFullAccess",
+            "Effect": "Allow",
+            "Action": [
+                "glue:CreateScript",
+                "glue:GetJob",
+                "glue:GetJobRun",
+                "glue:GetJobs",
+                "glue:ListJobs"
+            ],
+            "Resource": "arn:aws:glue:sa-east-1:475057824718:job/oracle-to-parquet-partitioned"
+        },
+        {
+            "Sid": "AllowGlueTagJob",
+            "Effect": "Allow",
+            "Action": "glue:TagResource",
+            "Resource": "arn:aws:glue:sa-east-1:475057824718:job/oracle-to-parquet-partitioned"
+        },
+        {
+            "Sid": "AllowGlueGetJob",
+            "Effect": "Allow",
+            "Action": "glue:GetJob",
+            "Resource": "arn:aws:glue:sa-east-1:475057824718:job/oracle-to-parquet-partitioned"
+        },
+        {
+            "Sid": "CatalogCreateDatabase",
+            "Effect": "Allow",
+            "Action": "glue:CreateDatabase",
+            "Resource": "*"
+        },
+        {
+            "Sid": "CatalogGetDatabase",
+            "Effect": "Allow",
+            "Action": [
+                "glue:GetDatabase",
+                "glue:GetDatabases",
+                "glue:DeleteDatabase",
+                "glue:DeleteTable",
+                "glue:DeleteUserDefinedFunction"
+            ],
+            "Resource": [
+                "arn:aws:glue:sa-east-1:475057824718:catalog",
+                "arn:aws:glue:sa-east-1:475057824718:database/*",
+                "arn:aws:glue:sa-east-1:475057824718:table/*/*",
+                "arn:aws:glue:sa-east-1:475057824718:userDefinedFunction/*/*"
+            ]
+        },
+        {
+            "Sid": "TableAccess",
+            "Effect": "Allow",
+            "Action": [
+                "glue:GetTable",
+                "glue:GetTables"
+            ],
+            "Resource": "arn:aws:glue:sa-east-1:475057824718:table/orion/*"
+        },
+        {
+            "Sid": "CrawlerAccess",
+            "Effect": "Allow",
+            "Action": [
+                "glue:GetClassifier",
+                "glue:GetClassifiers",
+                "glue:GetConnection",
+                "glue:GetConnections",
+                "glue:GetCrawler",
+                "glue:GetCrawlers",
+                "glue:CreateCrawler",
+                "glue:TagResource",
+                "glue:DeleteCrawler"
+            ],
+            "Resource": [
+                "arn:aws:glue:sa-east-1:475057824718:crawler/orion-bronze",
+                "arn:aws:glue:sa-east-1:475057824718:crawler/orion-gold",
+                "arn:aws:glue:sa-east-1:475057824718:crawler/orion-silver"
+            ]
+        },
+        {
+            "Sid": "JobAccess",
+            "Effect": "Allow",
+            "Action": [
+                "glue:GetJob",
+                "glue:GetJobs"
+            ],
+            "Resource": "arn:aws:glue:sa-east-1:475057824718:job/*"
+        },
+        {
+            "Sid": "GeneralGlueActions",
+            "Effect": "Allow",
+            "Action": [
+                "glue:GetDataCatalogEncryptionSettings",
+                "glue:GetTags"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "GlueConnectionAccess",
+            "Effect": "Allow",
+            "Action": [
+                "glue:GetConnection",
+                "glue:GetConnections"
+            ],
+            "Resource": "*"
+        }
+    ]
 }
