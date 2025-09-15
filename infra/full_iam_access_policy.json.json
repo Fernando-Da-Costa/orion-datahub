@@ -1,0 +1,37 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateGroup",
+        "iam:GetGroup",
+        "iam:DeleteGroup",
+        "iam:AttachGroupPolicy",
+        "iam:DetachGroupPolicy",
+        "iam:ListAttachedGroupPolicies",
+        "iam:AddUserToGroup",
+        "iam:RemoveUserFromGroup",
+        "iam:ListGroupsForUser",
+        "iam:CreatePolicy",
+        "iam:GetPolicy",
+        "iam:GetPolicyVersion",
+        "iam:ListPolicyVersions",
+        "iam:TagPolicy",
+        "iam:DeletePolicy",
+        "iam:AttachUserPolicy",
+        "iam:CreateRole",
+        "iam:GetRole",
+        "iam:TagRole",
+        "iam:PutRolePolicy",
+        "iam:PassRole",
+        "iam:DeleteRole",
+        "iam:AttachRolePolicy",
+        "iam:ListRolePolicies",
+        "iam:ListAttachedRolePolicies",
+        "iam:ListInstanceProfilesForRole"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
