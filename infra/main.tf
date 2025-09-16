@@ -13,18 +13,18 @@ module "kinesis_stream" {
   shard_count    = 1
 }
 
-# module "lambda" {
-#   source              = "./modules/lambda"
-#   function_name       = "fetch-transacoes"
-#   handler             = "lambda_function.lambda_handler"
-#   runtime             = "python3.12"
-#   schedule_expression = "rate(5 minutes)"
-#   environment_vars = {
-#     KINESIS_STREAM_NAME = module.kinesis_stream.stream_name
-#     API_URL             = "https://api.terceiros.com/transacoes"
-#   }
-#   iam_role_arn        = module.iam.lambda_role_arn
-# }
+module "lambda" {
+  source              = "./modules/lambda"
+  function_name       = "fetch-transacoes"
+  handler             = "lambda_function.lambda_handler"
+  runtime             = "python3.12"
+  schedule_expression = "rate(5 minutes)"
+  environment_vars = {
+    KINESIS_STREAM_NAME = module.kinesis_stream.stream_name
+    API_URL             = "https://api.terceiros.com/transacoes"
+  }
+  iam_role_arn        = module.iam.lambda_role_arn
+}
 
 
 

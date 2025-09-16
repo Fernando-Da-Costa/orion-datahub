@@ -6,6 +6,11 @@ module "policies_kinesis" {
   environment         = var.environment
 }
 
+module "policies_lambda" {
+  source              = "./policies/lambda"
+  environment         = var.environment
+}
+
 module "policies_s3" {
   source = "./policies/s3"
 }
@@ -62,7 +67,7 @@ module "attachments" {
   athena_access_policy_arn      = module.policies_athena.athena_access_arn
   kinesis_access_policy_arn      = module.policies_kinesis.kinesis_access_arn
   lakeformation_access_policy_arn = module.policies_lakeformation.lakeformation_access_arn
-  lambda_access_policy_arn        = module.policies_kinesis.kinesis_access_arn
+  lambda_access_policy_arn        = module.policies_lambda.lambda_access_arn
 }
 
 

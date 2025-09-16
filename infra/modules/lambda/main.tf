@@ -3,7 +3,7 @@ resource "aws_lambda_function" "this" {
   handler       = var.handler
   runtime       = var.runtime
   role          = var.iam_role_arn
-  filename      = "${path.module}/lambda.zip" # ou use s3_bucket + s3_key
+  filename      = "${path.module}/../../../myfunction/lambda.zip"
 
   environment {
     variables = var.environment_vars

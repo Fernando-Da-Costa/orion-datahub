@@ -7,8 +7,22 @@
         "kinesis:PutRecord",
         "kinesis:PutRecords",
         "kinesis:AddTagsToStream",
+        "kinesis:CreateStream",
+        "kinesis:DescribeStreamSummary",
+        "kinesis:IncreaseStreamRetentionPeriod",
+        "kinesis:DeleteStream",
+        "kinesis:ListTagsForStream",
+        "events:PutTargets",
+        "events:RemoveTargets",
+        "events:DescribeRule", 
         "events:PutRule",
-        "iam:CreatePolicyVersion"
+        "events:ListTagsForResource",
+        "events:DeleteRule",
+        "events:ListTargetsByRule",
+        "iam:CreatePolicyVersion",
+        "iam:DeletePolicyVersion",
+        "iam:DeletePolicy",
+        "iam:DetachRolePolicy"
       ],
       "Resource": "*"
     }

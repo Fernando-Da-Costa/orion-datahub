@@ -42,3 +42,8 @@ variable "lambda_access_policy_arn" {
   description = "ARN da policy de acesso ao Lambda"
   type        = string
 }
+
+# variable "lambda1_access_policy_arn" {
+#   description = "ARN da policy de acesso ao Lambda"
+#   type        = string
+# }
