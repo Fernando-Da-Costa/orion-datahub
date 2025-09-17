@@ -15,3 +15,14 @@ variable "account_id" {
   type        = string
   description = "ID da conta AWS"
 }
+
+variable "function_name" {
+  type = string
+}
+
+
+variable "kinesis_stream_name" {
+  type = map(string)
+}
+
+

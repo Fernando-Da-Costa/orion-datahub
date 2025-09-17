@@ -16,3 +16,4 @@ infra/envs
 myfunction/
 # Specific files
 comandos.txt
+scripts_test/

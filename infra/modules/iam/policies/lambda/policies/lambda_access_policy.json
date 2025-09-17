@@ -2,6 +2,7 @@
   "Version": "2012-10-17",
   "Statement": [
     {
+      "Sid": "LambdaCorePermissions",
       "Effect": "Allow",
       "Action": [
         "lambda:CreateFunction",
@@ -16,7 +17,23 @@
         "lambda:InvokeFunction",
         "lambda:TagResource",
         "lambda:UntagResource",
-        "lambda:GetPolicy",
+        "lambda:GetPolicy"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "LayerPermissions",
+      "Effect": "Allow",
+      "Action": [
+        "lambda:GetLayerVersion",
+        "lambda:ListLayerVersions"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "LoggingAndKinesisPermissions",
+      "Effect": "Allow",
+      "Action": [
         "logs:CreateLogGroup",
         "logs:CreateLogStream",
         "logs:PutLogEvents",

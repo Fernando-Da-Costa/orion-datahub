@@ -1,8 +1,3 @@
-variable "stream_name" {
-  type        = string
-  description = "Nome do Kinesis Stream"
-}
-
 variable "shard_count" {
   type        = number
   default     = 1
@@ -23,4 +18,7 @@ variable "environment" {
 variable "owner" {
   type        = string
   default     = "fernando"
+}
+variable "kinesis_stream_name" {
+  type = string
 }

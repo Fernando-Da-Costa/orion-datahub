@@ -8,22 +8,24 @@ module "iam" {
 
 
 module "kinesis_stream" {
-  source         = "./modules/kinesis_stream"
-  stream_name    = "transacoes-stream"
-  shard_count    = 1
+  source              = "./modules/kinesis_stream"
+  for_each            = var.kinesis_stream_name
+  kinesis_stream_name = each.value
+  shard_count         = 1
 }
 
-module "lambda" {
-  source              = "./modules/lambda"
-  function_name       = "fetch-transacoes"
-  handler             = "lambda_function.lambda_handler"
-  runtime             = "python3.12"
-  schedule_expression = "rate(5 minutes)"
-  environment_vars = {
-    KINESIS_STREAM_NAME = module.kinesis_stream.stream_name
-    API_URL             = "https://api.terceiros.com/transacoes"
-  }
-  iam_role_arn        = module.iam.lambda_role_arn
+
+module "lambda_functions" {
+  source               = "./modules/lambda"
+  for_each             = local.lambda_configs
+  function_name        = each.value.function_name
+  handler              = "${each.value.function_name}.lambda_handler"
+  runtime              = "python3.12"
+  schedule_expression  = "rate(5 minutes)"
+  iam_role_arn         = module.iam.lambda_role_arn
+  include_pandas_layer = true
+  region               = var.region
+  lambda_config        = each.value
 }
 
 

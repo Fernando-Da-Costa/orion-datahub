@@ -1,5 +1,5 @@
 resource "aws_kinesis_stream" "this" {
-  name             = var.stream_name
+  name             = var.kinesis_stream_name
   retention_period = var.retention_hours
 
   stream_mode_details {

@@ -1,18 +1,21 @@
 resource "aws_lambda_function" "this" {
-  function_name = var.function_name
-  handler       = var.handler
-  runtime       = var.runtime
-  role          = var.iam_role_arn
-  filename      = "${path.module}/../../../myfunction/lambda.zip"
+  function_name = var.lambda_config.function_name
+  handler       = var.lambda_config.handler
+  runtime       = var.lambda_config.runtime
+  role          = var.lambda_config.iam_role_arn
+  filename      = "${path.module}/../../../myfunction/${var.lambda_config.filename}"
 
   environment {
-    variables = var.environment_vars
+    variables = var.lambda_config.environment_vars
   }
 }
 
+
+
+
 resource "aws_cloudwatch_event_rule" "schedule" {
-  name                = "${var.function_name}-schedule"
-  schedule_expression = var.schedule_expression
+  name                = "${var.lambda_config.function_name}-schedule"
+  schedule_expression = "rate(5 minutes)"
 }
 
 resource "aws_cloudwatch_event_target" "lambda_target" {
