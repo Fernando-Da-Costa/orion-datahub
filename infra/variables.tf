@@ -26,3 +26,23 @@ variable "kinesis_stream_name" {
 }
 
 
+variable "kinesis_analytics_name" {
+  type = string
+}
+# variable "app_name" {
+#   type = string
+# }
+
+variable "firehose_name" {
+  type        = string
+  description = "Nome do Kinesis Firehose Delivery Stream"
+  default     = "orion-datahub-firehose" 
+}
+
+variable "firehose_streams" {
+  type = map(object({
+    prefix     = string
+    bucket_arn = string
+  }))
+}
+

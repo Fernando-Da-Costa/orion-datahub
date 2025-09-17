@@ -15,7 +15,7 @@
         "lakeformation:DeleteLFTag",
         "lakeformation:ListLFTags"
       ],
-      "Resource": "arn:aws:lakeformation:sa-east-1:475057824718:catalog:475057824718"
+      "Resource": "arn:aws:lakeformation:sa-east-1:572422066503:catalog:572422066503"
     }
   ]
 }

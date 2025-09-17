@@ -6,6 +6,7 @@ module "policies_kinesis" {
   environment         = var.environment
 }
 
+
 module "policies_lambda" {
   source              = "./policies/lambda"
   environment         = var.environment

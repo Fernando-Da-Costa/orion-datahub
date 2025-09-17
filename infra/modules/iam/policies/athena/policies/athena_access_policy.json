@@ -9,7 +9,7 @@
         "athena:GetQueryResults",
         "athena:GetQueryExecution"
       ],
-      "Resource": "arn:aws:athena:sa-east-1:475057824718:workgroup/orion-dev-wg"
+      "Resource": "arn:aws:athena:sa-east-1:572422066503:workgroup/orion-dev-wg"
     },
     {
       "Sid": "AllowCreateWorkGroupGlobally",

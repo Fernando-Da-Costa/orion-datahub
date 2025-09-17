@@ -37,7 +37,9 @@
         "logs:CreateLogGroup",
         "logs:CreateLogStream",
         "logs:PutLogEvents",
-        "kinesis:PutRecord"
+        "kinesis:PutRecord",
+        "logs:DescribeLogStreams",
+        "logs:DescribeLogGroups"
       ],
       "Resource": "*"
     }

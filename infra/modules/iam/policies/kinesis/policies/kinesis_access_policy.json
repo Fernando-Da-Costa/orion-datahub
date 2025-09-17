@@ -25,7 +25,9 @@
         "iam:CreatePolicyVersion",
         "iam:DeletePolicyVersion",
         "iam:DeletePolicy",
-        "iam:DetachRolePolicy"
+        "iam:DetachRolePolicy",
+        "firehose:PutRecord",
+        "firehose:PutRecordBatch"
       ],
       "Resource": "*"
     }

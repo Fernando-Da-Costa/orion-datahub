@@ -28,16 +28,45 @@ module "lambda_functions" {
   lambda_config        = each.value
 }
 
+module "s3_lakehouse" {
+  source        = "../infra/modules/s3_lakehouse"
+  environment   = var.environment
+
+}
 
 
-
-
-# module "s3_lakehouse" {
-#   source        = "../infra/modules/s3_lakehouse"
-#   environment   = var.environment
-#   bucket_script = "orion-datahub-script"
-
+# module "firehose" {
+#   source           = "./modules/firehose"
+#   role_arn         = module.iam.lambda_role_arn
+#   firehose_streams = {
+#     statements = {
+#       prefix     = "statements/"
+#       bucket_arn = "arn:aws:s3:::your-bucket"
+#     }
+#     payments = {
+#       prefix     = "payments/"
+#       bucket_arn = "arn:aws:s3:::your-bucket"
+#     }
+#     matches = {
+#       prefix     = "matches/"
+#       bucket_arn = "arn:aws:s3:::your-bucket"
+#     }
+#   }
 # }
+
+
+
+# module "kinesis_analytics" {
+#   source              = "./modules/kinesis_analytics"
+#   kinesis_analytics_name = var.kinesis_analytics_name
+#   app_name            = var.app_name
+#   execution_role_arn  = module.iam.lambda_role_arn
+#   input_stream_arn    = values(module.kinesis_stream)[0].kinesis_stream_arn # Alterado para usar o output correto
+#   firehose_arn        = module.firehose.firehose_arn
+# }
+
+
+
 
 # module "glue_catalog" {
 #   source        = "../infra/modules/glue_catalog"
