@@ -1,8 +1,6 @@
 resource "aws_s3_bucket" "firehose_layer" {
   for_each = toset(["matches", "payments", "statements"])
-
   bucket = "orion-datahub-${each.key}-${var.environment}"
-
   tags = {
     Name        = "orion-datahub-${each.key}-${var.environment}"
     Environment = var.environment

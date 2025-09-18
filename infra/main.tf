@@ -34,25 +34,24 @@ module "s3_lakehouse" {
 
 }
 
+resource "aws_kinesis_firehose_delivery_stream" "firehose" {
+  for_each   = var.firehose_streams
+  name       = "${each.key}-firehose"
+  destination = "extended_s3"
 
-# module "firehose" {
-#   source           = "./modules/firehose"
-#   role_arn         = module.iam.lambda_role_arn
-#   firehose_streams = {
-#     statements = {
-#       prefix     = "statements/"
-#       bucket_arn = "arn:aws:s3:::your-bucket"
-#     }
-#     payments = {
-#       prefix     = "payments/"
-#       bucket_arn = "arn:aws:s3:::your-bucket"
-#     }
-#     matches = {
-#       prefix     = "matches/"
-#       bucket_arn = "arn:aws:s3:::your-bucket"
-#     }
-#   }
-# }
+  extended_s3_configuration {
+    role_arn           = module.iam.firehose_role_arn
+    bucket_arn         = each.value.bucket_arn
+    prefix             = each.value.prefix
+    compression_format = "UNCOMPRESSED"
+
+    cloudwatch_logging_options {
+      enabled         = true
+      log_group_name  = "/aws/kinesisfirehose/${each.key}-firehose"
+      log_stream_name = "s3-delivery"
+    }
+  }
+}
 
 
 
