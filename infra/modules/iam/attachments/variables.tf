@@ -43,10 +43,10 @@ variable "lambda_access_policy_arn" {
   type        = string
 }
 
-# variable "firehose_role_name" {
-#   description = "Nome do role do Firehose"
-#   type        = string
-# }
+variable "firehose_role_name" {
+  description = "Nome do role do Firehose"
+  type        = string
+}
 variable "firehose_access_policy_arn" { 
   description = "ARN da policy de acesso ao Firehose"
   type        = string

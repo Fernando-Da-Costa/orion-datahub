@@ -17,6 +17,54 @@
         "firehose:PutRecordBatch"
       ],
       "Resource": "arn:aws:firehose:sa-east-1:572422066503:deliverystream/*"
+    },
+    {
+      "Sid": "KinesisSourceAccess",
+      "Effect": "Allow",
+      "Action": [
+        "kinesis:DescribeStream",
+        "kinesis:GetShardIterator",
+        "kinesis:GetRecords",
+        "kinesis:ListShards",
+        "kinesis:RegisterStreamConsumer"
+      ],
+      "Resource": [
+        "arn:aws:kinesis:sa-east-1:572422066503:stream/matches-stream",
+        "arn:aws:kinesis:sa-east-1:572422066503:stream/statements-stream",
+        "arn:aws:kinesis:sa-east-1:572422066503:stream/payments-stream"
+      ]
+    },
+    {
+      "Sid": "S3DeliveryAccess",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:PutObjectAcl",
+        "s3:GetBucketLocation"
+      ],
+      "Resource": "arn:aws:s3:::orion-datahub-*/*"
+    },
+    {
+      "Sid": "CloudWatchLoggingAccess",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": [
+        "arn:aws:logs:sa-east-1:572422066503:log-group:/aws/kinesisfirehose/*",
+        "arn:aws:logs:sa-east-1:572422066503:log-group:/aws/kinesisfirehose/*:log-stream:*"
+      ]
+    },
+    {
+      "Sid": "IAMPolicyAccessForFirehose",
+      "Effect": "Allow",
+      "Action": [
+        "iam:GetRolePolicy",
+        "iam:PutRolePolicy"
+      ],
+      "Resource": "arn:aws:iam::572422066503:role/orion-firehose-role-dev"
     }
   ]
 }

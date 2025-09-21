@@ -31,17 +31,22 @@
       "Resource": "*"
     },
     {
-      "Sid": "LoggingAndKinesisPermissions",
+      "Sid": "CloudWatchLoggingPermissions",
       "Effect": "Allow",
       "Action": [
         "logs:CreateLogGroup",
         "logs:CreateLogStream",
         "logs:PutLogEvents",
-        "kinesis:PutRecord",
         "logs:DescribeLogStreams",
         "logs:DescribeLogGroups"
       ],
       "Resource": "*"
+    },
+    {
+      "Sid": "KinesisPutRecordPermission",
+      "Effect": "Allow",
+      "Action": "kinesis:PutRecord",
+      "Resource": "arn:aws:kinesis:sa-east-1:572422066503:stream/statements-stream"
     }
   ]
 }

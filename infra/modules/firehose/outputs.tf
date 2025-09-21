@@ -1,6 +1,5 @@
-output "firehose_arns" {
+output "firehose_names" {
   value = {
-    for name, stream in aws_kinesis_firehose_delivery_stream.firehose :
-    name => stream.arn
+    for k, v in aws_kinesis_firehose_delivery_stream.firehose : k => v.name
   }
 }

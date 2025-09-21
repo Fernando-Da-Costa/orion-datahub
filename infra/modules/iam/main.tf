@@ -72,7 +72,7 @@ module "attachments" {
   data_readers_group_name       = module.groups.data_readers_name
   glue_role_name                = module.glue_role.glue_role_name
   lambda_role_name              = module.lambda_role.lambda_role_name
-  #firehose_role_name            = module.firehose_role.firehose_role_name
+  firehose_role_name            = module.firehose_role.firehose_role_name
   athena_access_policy_arn      = module.policies_athena.athena_access_arn
   kinesis_access_policy_arn      = module.policies_kinesis.kinesis_access_arn
   lakeformation_access_policy_arn = module.policies_lakeformation.lakeformation_access_arn

@@ -7,4 +7,6 @@ output "lambda_role_arn" {
 output "firehose_role_arn" {
   value = module.firehose_role.firehose_role_arn
 }
-
+output "firehose_role_name" {
+  value = module.firehose_role.firehose_role_name
+}

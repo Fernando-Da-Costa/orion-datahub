@@ -28,12 +28,17 @@ module "lambda_functions" {
   lambda_config        = each.value
 }
 
+
+
 module "s3_lakehouse" {
   source        = "../infra/modules/s3_lakehouse"
   environment   = var.environment
-
+ 
 }
 
+
+
+############################################################################################################################################
 resource "aws_kinesis_firehose_delivery_stream" "firehose" {
   for_each   = var.firehose_streams
   name       = "${each.key}-firehose"
@@ -50,8 +55,14 @@ resource "aws_kinesis_firehose_delivery_stream" "firehose" {
       log_group_name  = "/aws/kinesisfirehose/${each.key}-firehose"
       log_stream_name = "s3-delivery"
     }
+
+    error_output_prefix = "${each.value.prefix}/errors/!{firehose:error-output-type}/"
   }
 }
+
+############################################################################################################################################
+
+
 
 
 
