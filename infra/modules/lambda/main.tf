@@ -3,7 +3,7 @@ resource "aws_lambda_function" "this" {
   handler       = var.lambda_config.handler
   runtime       = var.lambda_config.runtime
   role          = var.lambda_config.iam_role_arn
-  filename      = "${path.module}/../../../myfunction/${var.lambda_config.filename}"
+  filename      = "${path.module}/../../../Function_Lambda/${var.lambda_config.filename}"
 
   environment {
     variables = var.lambda_config.environment_vars

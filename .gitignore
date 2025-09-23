@@ -13,7 +13,7 @@ venv/
 .venv/
 infra/envs
 
-myfunction/
+Function_Lambda/
 # Specific files
 comandos.txt
 scripts_test/

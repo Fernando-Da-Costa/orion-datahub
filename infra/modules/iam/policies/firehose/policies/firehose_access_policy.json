@@ -54,7 +54,7 @@
       ],
       "Resource": [
         "arn:aws:logs:sa-east-1:572422066503:log-group:/aws/kinesisfirehose/*",
-        "arn:aws:logs:sa-east-1:572422066503:log-group:/aws/kinesisfirehose/*:log-stream:*"
+        "arn:aws:logs:sa-east-1:572422066503:log-group:/aws/kinesisfirehose/*:*"
       ]
     },
     {

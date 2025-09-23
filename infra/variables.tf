@@ -41,6 +41,7 @@ variable "firehose_streams" {
   type = map(object({
     prefix     = string
     bucket_arn = string
+    kinesis_stream_arn = string
   }))
 }
 
