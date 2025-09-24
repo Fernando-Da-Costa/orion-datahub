@@ -17,3 +17,8 @@ variable "environment" {
   type        = string
   description = "Ambiente (ex: dev, prod)"
 }
+variable owner {
+  type        = string
+  default     = "data-platform"
+  description = "owner name"
+}

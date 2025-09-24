@@ -1,10 +1,11 @@
-resource "aws_glue_catalog_database" "orion" {
-  name = "orion"
+resource "aws_glue_catalog_database" "this" {
+  name = var.name_database
 
   parameters = {
-    "project"  = "orion-datahub"
-    "layer"    = "medallion"
-    "owner"    = "data-platform"
+    "project"  = var.project
+    "layer"    = var.layer
+    "owner"    = var.owner
+    "env"      = var.environment
   }
 }
 

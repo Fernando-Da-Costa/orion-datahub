@@ -1,7 +1,7 @@
 resource "aws_glue_crawler" "this" {
   for_each = var.targets
 
-  name          = "orion-${each.key}"
+  name          = "orion-${each.key}-crawler"
   role          = var.iam_role_arn
   database_name = var.catalog_database_name
   s3_target {
@@ -17,6 +17,6 @@ resource "aws_glue_crawler" "this" {
   tags = {
     Environment = var.environment
     Layer       = each.key
-    Owner       = "orion-datahub"
+    Owner       = var.owner
   }
 }

@@ -45,3 +45,9 @@ variable "firehose_streams" {
   }))
 }
 
+variable "name_database" {
+  type        = string
+  description = "name the database"
+}
+
+

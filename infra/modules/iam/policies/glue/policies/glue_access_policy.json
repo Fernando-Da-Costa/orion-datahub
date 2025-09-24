@@ -27,14 +27,6 @@
             "Resource": "arn:aws:glue:sa-east-1:572422066503:job/oracle-to-parquet-partitioned"
         },
         {
-            "Sid": "AllowS3ScriptAccess",
-            "Effect": "Allow",
-            "Action": [
-                "s3:GetObject"
-            ],
-            "Resource": "arn:aws:s3:::orion-datahub-script/scripts/oracle_to_parquet_partitioned.py"
-        },
-        {
             "Sid": "AllowGlueCreateScript",
             "Effect": "Allow",
             "Action": "glue:CreateScript",
@@ -100,7 +92,11 @@
                 "glue:GetTable",
                 "glue:GetTables"
             ],
-            "Resource": "arn:aws:glue:sa-east-1:572422066503:table/orion/*"
+             "Resource": [
+                "arn:aws:glue:sa-east-1:572422066503:catalog",
+                "arn:aws:glue:sa-east-1:572422066503:database/orion-datahub-streaming",
+                "arn:aws:glue:sa-east-1:572422066503:table/orion-datahub-streaming/*"
+            ]
         },
         {
             "Sid": "CrawlerAccess",
@@ -114,12 +110,11 @@
                 "glue:GetCrawlers",
                 "glue:CreateCrawler",
                 "glue:TagResource",
-                "glue:DeleteCrawler"
+                "glue:DeleteCrawler",
+                "glue:UpdateCrawler"
             ],
             "Resource": [
-                "arn:aws:glue:sa-east-1:572422066503:crawler/orion-bronze",
-                "arn:aws:glue:sa-east-1:572422066503:crawler/orion-gold",
-                "arn:aws:glue:sa-east-1:572422066503:crawler/orion-silver"
+                  "arn:aws:glue:sa-east-1:572422066503:crawler/*"
             ]
         },
         {
@@ -148,6 +143,65 @@
                 "glue:GetConnections"
             ],
             "Resource": "*"
+        },
+        {
+            "Sid": "AllowCloudWatchLogsForGlue",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+                "logs:DescribeLogGroups",
+                "logs:DescribeLogStreams"
+            ],
+            "Resource": [
+                "arn:aws:logs:sa-east-1:572422066503:log-group:/aws-glue/crawlers",
+                "arn:aws:logs:sa-east-1:572422066503:log-group:/aws-glue/crawlers:log-stream:*",
+                "arn:aws:logs:sa-east-1:572422066503:log-group:/aws-glue/crawlers:log-stream:orion-statements-crawler"
+            ]
+        },
+        {
+            "Sid": "AllowS3AccessForCrawler",
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket",
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::orion-datahub-statements-dev",
+                "arn:aws:s3:::orion-datahub-statements-dev/statements/raw/*"
+            ]
+        },
+        {
+            "Sid": "AllowGlueCreateTable",
+            "Effect": "Allow",
+            "Action": "glue:CreateTable",
+            "Resource": [
+                "arn:aws:glue:sa-east-1:572422066503:catalog",
+                "arn:aws:glue:sa-east-1:572422066503:database/orion-datahub-streaming",
+                "arn:aws:glue:sa-east-1:572422066503:table/orion-datahub-streaming/*"
+            ]
+        },
+        {
+            "Sid": "AllowGlueBatchGetPartition",
+            "Effect": "Allow",
+            "Action": "glue:BatchGetPartition",
+            "Resource": [
+                "arn:aws:glue:sa-east-1:572422066503:catalog",
+                "arn:aws:glue:sa-east-1:572422066503:database/orion-datahub-streaming",
+                "arn:aws:glue:sa-east-1:572422066503:table/orion-datahub-streaming/*"
+            ]
+        },
+        {
+            "Sid": "AllowGlueBatchCreatePartition",
+            "Effect": "Allow",
+            "Action": "glue:BatchCreatePartition",
+            "Resource": [
+                "arn:aws:glue:sa-east-1:572422066503:catalog",
+                "arn:aws:glue:sa-east-1:572422066503:database/orion-datahub-streaming",
+                "arn:aws:glue:sa-east-1:572422066503:table/orion-datahub-streaming/*"
+            ]
         }
+
     ]
 }

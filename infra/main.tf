@@ -64,45 +64,24 @@ resource "aws_kinesis_firehose_delivery_stream" "firehose" {
     error_output_prefix = "${each.value.prefix}/errors/!{firehose:error-output-type}/"
   }
 }
-
 ############################################################################################################################################
 
 
 
+module "glue_catalog" {
+  source        = "../infra/modules/glue_catalog"
+  environment   = var.environment
+  iam_role_arn  = module.iam.glue_role_arn 
+  glue_role_arn    = module.iam.glue_role_arn
+  name_database    = var.name_database
+}
 
 
-# module "kinesis_analytics" {
-#   source              = "./modules/kinesis_analytics"
-#   kinesis_analytics_name = var.kinesis_analytics_name
-#   app_name            = var.app_name
-#   execution_role_arn  = module.iam.lambda_role_arn
-#   input_stream_arn    = values(module.kinesis_stream)[0].kinesis_stream_arn # Alterado para usar o output correto
-#   firehose_arn        = module.firehose.firehose_arn
-# }
-
-
-
-
-# module "glue_catalog" {
-#   source        = "../infra/modules/glue_catalog"
-#   environment   = var.environment
-#   iam_role_arn  = module.iam.arn
-#   script_path      = "s3://orion-datahub-script/scripts/oracle_to_parquet_partitioned.py"
-#   s3_input_path    = "s3://orion-datahub-bronze/fonte_a/"
-#   s3_output_path   = "s3://orion-datahub-silver/"
-#   temp_dir         = "s3://orion-datahub-bronze/temp/"
-#   glue_role_arn    = module.iam.arn
-#   bucket_script    = module.s3_lakehouse.bucket_script
-#   table            = "empregados"
-#   schema           = "orion"    
-# }
-
-
-# module "athena" {
-#   source                = "../infra/modules/athena"
-#   environment           = var.environment
-#   athena_results_bucket = module.s3_lakehouse.athena_query_results_bucket
-# }
+module "athena" {
+  source                = "../infra/modules/athena"
+  environment           = var.environment
+  athena_results_bucket = module.s3_lakehouse.athena_query_results_bucket
+}
 
 # module "lakeformation" {
 #   source        = "../infra/modules/lakeformation"
