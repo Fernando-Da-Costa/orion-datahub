@@ -81,6 +81,8 @@ module "athena" {
   source                = "../infra/modules/athena"
   environment           = var.environment
   athena_results_bucket = module.s3_lakehouse.athena_query_results_bucket
+  workgroup_name        = var.workgroup_name
+  owner                 = var.owner
 }
 
 # module "lakeformation" {

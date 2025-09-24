@@ -9,10 +9,21 @@
         "arn:aws:s3:::orion-datahub-matches-dev",
         "arn:aws:s3:::orion-datahub-payments-dev",
         "arn:aws:s3:::orion-datahub-statements-dev",
+        "arn:aws:s3:::orion-datahub-athena-query-results-dev",
         "arn:aws:s3:::orion-datahub-matches-dev/*",
         "arn:aws:s3:::orion-datahub-payments-dev/*",
-        "arn:aws:s3:::orion-datahub-statements-dev/*"
+        "arn:aws:s3:::orion-datahub-statements-dev/*",
+        "arn:aws:s3:::orion-datahub-athena-query-results-dev/*"
       ]
+    },
+    {
+      "Sid": "LifecycleAccessAthenaResults",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetLifecycleConfiguration",
+        "s3:PutLifecycleConfiguration"
+      ],
+      "Resource": "arn:aws:s3:::orion-datahub-athena-query-results-dev"
     }
   ]
 }

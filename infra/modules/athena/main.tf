@@ -1,5 +1,5 @@
 resource "aws_athena_workgroup" "orion" {
-  name = "orion-datahub-wg"
+  name = var.workgroup_name
   configuration {
     enforce_workgroup_configuration = true
     result_configuration {
@@ -9,6 +9,6 @@ resource "aws_athena_workgroup" "orion" {
 
   tags = {
     Environment = var.environment
-    Owner       = "orion-datahub"
+    Owner       = var.owner
   }
 }

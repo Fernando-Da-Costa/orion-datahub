@@ -51,3 +51,13 @@ variable "name_database" {
 }
 
 
+variable "workgroup_name" {
+  type        = string
+  description = "Nome da workgroup do Athena"
+  default     = "wg_orion-datahub"
+}
+
+variable "owner" {
+  type        = string
+  description = "owner do workgroup do Athena"
+}
