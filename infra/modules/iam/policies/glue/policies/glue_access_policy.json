@@ -201,7 +201,16 @@
                 "arn:aws:glue:sa-east-1:572422066503:database/orion-datahub-streaming",
                 "arn:aws:glue:sa-east-1:572422066503:table/orion-datahub-streaming/*"
             ]
+        },
+        {
+            "Sid": "AllowGlueUpdateTable",
+            "Effect": "Allow",
+            "Action": "glue:UpdateTable",
+            "Resource": [
+                "arn:aws:glue:sa-east-1:572422066503:catalog",
+                "arn:aws:glue:sa-east-1:572422066503:database/orion-datahub-streaming",
+                "arn:aws:glue:sa-east-1:572422066503:table/orion-datahub-streaming/*"
+            ]
         }
-
     ]
 }
