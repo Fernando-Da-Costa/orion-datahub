@@ -4,15 +4,23 @@ module "glue_db" {
   environment   = var.environment
 }
 
+
+
 module "glue_crawler" {
   source                = "./glue_crawler"
   catalog_database_name = module.glue_db.catalog_database_name
   iam_role_arn          = var.iam_role_arn
-  environment           = var.environment 
+  environment           = var.environment
+
   targets = {
-    statements  = "s3://orion-datahub-statements-dev/statements/raw"
-  }
+  for name, bucket in var.bucket_names :  name => "s3://${bucket}/${name}/" if name != "athena-query-results"
 }
+
+table_names = {
+  for name in keys(var.bucket_names) :  name => "rt2_" if name != "athena-query-results"
+}
+}
+
 
 # module "glue" {
 #   source           = "./glue_job"

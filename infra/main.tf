@@ -74,6 +74,7 @@ module "glue_catalog" {
   iam_role_arn  = module.iam.glue_role_arn 
   glue_role_arn    = module.iam.glue_role_arn
   name_database    = var.name_database
+  bucket_names      = module.s3_lakehouse.bucket_names
 }
 
 

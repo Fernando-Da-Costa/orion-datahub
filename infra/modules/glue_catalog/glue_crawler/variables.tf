@@ -22,3 +22,7 @@ variable owner {
   default     = "data-platform"
   description = "owner name"
 }
+
+variable "table_names" {
+  type = map(string)
+}

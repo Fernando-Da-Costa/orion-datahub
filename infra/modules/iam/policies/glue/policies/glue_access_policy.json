@@ -169,7 +169,7 @@
             ],
             "Resource": [
                 "arn:aws:s3:::orion-datahub-statements-dev",
-                "arn:aws:s3:::orion-datahub-statements-dev/statements/raw/*"
+                "arn:aws:s3:::orion-datahub-statements-dev/statements/*"
             ]
         },
         {

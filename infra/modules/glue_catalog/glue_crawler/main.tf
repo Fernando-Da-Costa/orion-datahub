@@ -1,6 +1,6 @@
 resource "aws_glue_crawler" "this" {
-  for_each = var.targets
-
+  for_each      = var.targets
+  table_prefix  = var.table_names[each.key]
   name          = "orion-${each.key}-crawler"
   role          = var.iam_role_arn
   database_name = var.catalog_database_name
